@@ -4,6 +4,10 @@
 \usepackage{titletoc}
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{geometry}
+
+\geometry{top=1in, bottom=1in, left=0.75in, right=0.75in}
 
 \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
 \titleformat{\section}[block]{\normalfont\Large\bfseries}{\thesection}{1em}{}
@@ -25,10 +29,9 @@
 \chapter{基本概念}
 \section{算法}
 
-{欧几里得算法证明}
+\paragraph{欧几里得算法证明}
 欧几里得算法的证明过程如下
-
-\begin{proof}[欧几里得算法]
+\begin{proof}[欧几里得算法证明]
   已知，在每次迭代过程中
   \begin{equation}
     m=qn+r
@@ -38,7 +41,7 @@
   \begin{equation}
     \begin{aligned}
       &ap=bqp+r \\
-      &(a-bq)p=r
+      &r=(a-bq)p
     \end{aligned}
   \end{equation}
   
@@ -49,9 +52,54 @@
   因此$(m,n)$和$(n,r)$的公约数集完全相同，最大公约数也相同
 \end{proof}
 
-\section{数学准备}
-这是第一章的第二个小节的内容。
+\paragraph{计算方法}
+书中所述计算方法定义，理解要点如下
+\begin{enumerate}
+\item $f$在$\Omega$上点点不动：$\Omega$为输出域，$f(q)=q$意思为获得输出后，终止计算
+\item 计算序列：就是计算步骤，步骤间可以跳转，计算序列在$k$步内终止就是一共有$k$个计算步骤
+\item $p$表示含义：$r>0$才会跳转到计算步骤3，所以用了新的正整数$p$代替$r$
+\item 字符串相关计算方法：结合习题8理解，N即表示共有N个计算步骤，$\theta_j$、$\phi_j$、$a_j$、$b_j$均表示常量，每个计算步骤的常量不同
+\end{enumerate}
+  
+\paragraph{习题}
+习题解答
+\begin{enumerate}
+\item $t <- a <- b <- c <- d <- t $
+\item $r=m \bmod n$，因此$r$必然小于$n$
+\item 不使用$r$缓存取模结果，轮流用$m$或$n$去缓存结果，$m=m \bmod n$与$n=n \bmod m$交替进行
+\item 57
+\item 除了输入，啥也没有
+\item 5是质数
+  对无穷大的数来说，执行一次$\bmod 5$得到的结果为0~4，且概率均等
+  再计算对0~4，求与5的公约数，执行次数为1、2、3、4、3，平均为2.6
+\item $m$已知，对于无限大取值范围的$n$来说，$n>m$的概率为无穷大，因此考虑平均执行次数，只需要考虑$n>m$的情况
+  对于$n>m$，执行一次计算后，实际上交换了$n$和$m$，因此变成了$n$已知，$m$无限的求公约数计算，故$U_m=T_m+1$
+\item 用更相减损法，计算最大公约数
+  \begin{enumerate}[label=\arabic*)] 
+  \item 计算$\left| m-n \right|$，若$\sigma$中有ab，则删掉ab，跳转到步骤1)，若没有ab，跳转到步骤2)
+  \item 计算$min(m,n)$，左侧增加一个c，用于记录减法的次数，当减法执行完成，c的个数就等于较小值，跳到步骤0)
+  \item $n<-\left| m-n \right|$，若存在a，a替换为b，跳到步骤2)，否则跳到步骤3)
+  \item $m<- min(m-n)$，c转化为a，若存在c，c替换为a，跳到步骤3)，否则跳到步骤4)
+  \item 判断$\left| m-n \right|$是否为0，检查是否有b，有b跳到步骤0)，否则结束
+  \end{enumerate}
+  因此，若用矩阵表示每个计算步骤的常量如下\\
+  \begin{center}
+    \begin{tabular}{c|c|c|c|c}
+      \hline
+      $j$&$\theta_j$&$\phi_j$&$a_j$&$b_j$\\
+      \hline
+      0&ab&空&1&2\\
+      1&空&c&0&不可能\\
+      2&a&b&2&3\\
+      3&c&a&3&4\\
+      a4&b&b&0&5\\
+      \hline
+    \end{tabular}
+  \end{center}
+\item 这也要证？还是看完集合论再说吧
+\end{enumerate}
 
+\section{数学准备}
 
 \end{document}
 
