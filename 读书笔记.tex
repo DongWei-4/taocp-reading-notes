@@ -1,0 +1,58 @@
+
+\documentclass[openany,UTF8]{ctexbook}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\titleformat{\section}[block]{\normalfont\Large\bfseries}{\thesection}{1em}{}
+
+
+\title{计算机程序设计艺术\\卷1：基本算法\\读书笔记}
+\author{DongWei}
+\date{}
+
+\begin{document}
+\pagenumbering{roman}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\pagenumbering{arabic} 
+\chapter{基本概念}
+\section{算法}
+
+{欧几里得算法证明}
+欧几里得算法的证明过程如下
+
+\begin{proof}[欧几里得算法]
+  已知，在每次迭代过程中
+  \begin{equation}
+    m=qn+r
+  \end{equation}
+
+  在$r\neq0$的情况下，假设$m$和$n$有公约数$p$，带入式(1.1)得
+  \begin{equation}
+    \begin{aligned}
+      &ap=bqp+r \\
+      &(a-bq)p=r
+    \end{aligned}
+  \end{equation}
+  
+  因此$p$也是$r$的约数，所以任何$(m,n)$的公约数，都是$(n,r)$的公约数
+  
+  类似方法可证，任何$(n,r)$的公约数，都是$(m,n)$的公约数
+  
+  因此$(m,n)$和$(n,r)$的公约数集完全相同，最大公约数也相同
+\end{proof}
+
+\section{数学准备}
+这是第一章的第二个小节的内容。
+
+
+\end{document}
+
+
